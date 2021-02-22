@@ -37,10 +37,11 @@ namespace API
             //Present in Extension folder in ApplicationServiceExtensions class
             services.AddApplicationServices(_config);
             
+            services.AddControllers();
             services.AddCors();
 
             //Present in Extension folder in IdentityServiceExtension class
-            services.AddIdentityServices(_config);
+            services.AddIdentityServices(_config);            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,8 +50,8 @@ namespace API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+                //app.UseSwagger();
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             }
 
             app.UseHttpsRedirection();
