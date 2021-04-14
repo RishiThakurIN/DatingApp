@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace API.Data
 {
+    /// <summary>
+    /// UserRepository will help to ease out the operation on User entity
+    /// </summary>
     public class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
@@ -22,11 +25,16 @@ namespace API.Data
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// Retriving member/user detail by username
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public async Task<MemberDto> GetMemberAsync(string username)
         {
             return await _context.Users
                 .Where(x => x.UserName.Equals(username))
-                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)    //  maps User entity data to MemberDto
                 .SingleOrDefaultAsync();
 
         }
